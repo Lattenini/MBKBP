@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/build",
+  "command": "/usr/bin/g++     -O3   -std=gnu++11 -o CMakeFiles/FastBB.dir/main.cpp.o -c /home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/main.cpp",
+  "file": "/home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/main.cpp"
+}
+]

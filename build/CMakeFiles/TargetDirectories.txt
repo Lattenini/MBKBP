@@ -1,0 +1,3 @@
+/home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/build/CMakeFiles/rebuild_cache.dir
+/home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/build/CMakeFiles/edit_cache.dir
+/home/njustdb/Jenny/k-biplex/SIGMOD23-MaxBP-main/MBBP/build/CMakeFiles/FastBB.dir

@@ -1,0 +1,191 @@
+        // //test start
+        // //可以如果S中本身就有povit的非邻居，就直接回到原来的操作即可
+        // //获取povit的非邻居顶点，逐个加入到P中
+        // vector<int>nonNeighpovit;
+        // for(temp_i=Cand2->vnum-1;temp_i>=0;--temp_i){
+        //     temp_node=Cand2->vlist[temp_i];
+        //     if(!bit_G[povit].test(temp_node)) nonNeighpovit.push_back(temp_node);
+        // }
+        // bool f = false;
+        // for(temp_i=P2->vnum-1;temp_i>=0;--temp_i){
+        //     temp_node=P2->vlist[temp_i];
+        //     if(!bit_G[povit].test(temp_node)) {
+        //         f = true;
+        //         break;
+        //     }
+        // }
+        // if(nonNeighpovit.size()==0||f){//没有非邻居（但是P中可能又povit的非邻居）
+        //     if(CanBranch())
+        //         BKmb_Rec();
+        // }
+        // for(int i:nonNeighpovit){
+        //     P2->add(i);
+        //     Cand2->remove(i);
+        //     Exc2->add(i);
+        //     for(temp_i=degree[i]-1;temp_i>=0;--temp_i){
+        //         temp_node=Graph[i][temp_i];
+        //         degInP[temp_node]++;
+        //     }
+        //     vector<int> remove_C11, remove_E11, remove_C21, remove_E21;
+        //     remove_C11.reserve(Cand1->vnum);
+        //     remove_C21.reserve(Cand2->vnum);
+        //     remove_E11.reserve(Exc1->vnum);
+        //     remove_E21.reserve(Exc2->vnum);
+
+        //     if(degInP[i]==P1->vnum-k){
+        //         for(temp_i=Cand1->vnum-1;temp_i>=0;--temp_i){
+        //             temp_node=Cand1->vlist[temp_i];
+        //             if(!bit_G[i].test(temp_node)||degInG[temp_node]<temp_stand2-k){
+        //                 Cand1->remove(temp_node);
+        //                 remove_C11.push_back(temp_node);
+        //                 for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                     temp_node2=Graph[temp_node][temp_j];
+        //                     --degInG[temp_node2];
+        //                 }
+        //             }
+        //         }
+
+        //         for(temp_i=Exc1->vnum-1;temp_i>=0;--temp_i){
+        //             temp_node=Exc1->vlist[temp_i];
+        //             if(!bit_G[i].test(temp_node)||degInG[temp_node]<temp_stand2-k){
+        //                 Exc1->remove(temp_node);
+        //                 remove_E11.push_back(temp_node);
+        //             }
+        //         }
+        //     }else{
+        //         temp_size1=P2->vnum-k;
+        //         for(temp_i=Cand1->vnum-1;temp_i>=0;--temp_i){
+        //             temp_node=Cand1->vlist[temp_i];
+        //             if(degInP[temp_node]<temp_size1||degInG[temp_node]<temp_stand2-k){
+        //                 Cand1->remove(temp_node);
+        //                 remove_C11.push_back(temp_node);
+        //                 for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                     temp_node2=Graph[temp_node][temp_j];
+        //                     --degInG[temp_node2];
+        //                 }
+        //             }
+        //         }
+
+        //         for(temp_i=Exc1->vnum-1;temp_i>=0;--temp_i){
+        //             temp_node=Exc1->vlist[temp_i];
+        //             if(degInP[temp_node]<temp_size1||degInG[temp_node]<temp_stand2-k){
+        //                 Exc1->remove(temp_node);
+        //                 remove_E11.push_back(temp_node);
+        //             }
+        //         }
+        //     }
+        //     for(temp_i=degree[i]-1;temp_i>=0;--temp_i){
+        //         temp_node=Graph[i][temp_i];
+        //         if(Cand1->contains(temp_node)||P1->contains(temp_node))
+        //             G_index2[temp_node]=1;
+        //     }
+        
+        //     temp_vector.clear();
+        //     temp_size1=P1->vnum;
+        //     temp_size2=P2->vnum;
+        //     for(temp_i=P1->vnum-1;temp_i>=0;--temp_i){
+        //         temp_node=P1->vlist[temp_i];
+        //         if(degInP[temp_node]==temp_size2-k&&!bit_G[i].test(temp_node)){
+        //             temp_vector.push_back(temp_node);
+        //         }
+        //     }
+
+        //     if(!temp_vector.empty()&&Cand1->vnum+P1->vnum>=temp_stand1){
+        //         for(temp_i=Cand2->vnum-1;temp_i>=0&&Cand2->vnum+P2->vnum>=temp_stand2;--temp_i){
+        //             temp_node=Cand2->vlist[temp_i];
+        //             if(degInP[temp_node]==temp_size1) continue;
+        //             if(degInP[temp_node]<temp_size1-k||degInG[temp_node]<temp_stand1-k){
+        //                 Cand2->remove(temp_node);
+        //                 remove_C21.push_back(temp_node);
+        //                 for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                     temp_node2=Graph[temp_node][temp_j];
+        //                     --degInG[temp_node2];
+        //                 }
+        //             }else{
+        //                 for(int j:temp_vector){
+        //                     if(!bit_G[temp_node].test(j)){
+        //                         Cand2->remove(temp_node);
+        //                         remove_C21.push_back(temp_node);
+        //                         for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                             temp_node2=Graph[temp_node][temp_j];
+        //                             --degInG[temp_node2];
+        //                         }
+        //                         break;
+        //                     }
+        //                 }
+        //                 //444
+        //                 if(Cand2->contains(temp_node)){
+        //                     count=0;
+        //                     for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                         if(G_index[Graph[temp_node][temp_j]]){
+        //                             count++;
+        //                         }
+        //                     }
+        //                     if(count<temp_stand1-2*k ||count<(MaxNodeNum-delta)/2-2*k){//S3
+        //                         Cand2->remove(temp_node);
+        //                         remove_C21.push_back(temp_node);
+        //                         for(temp_j=degree[temp_node]-1;temp_j>=0;--temp_j){
+        //                             temp_node2=Graph[temp_node][temp_j];
+        //                             --degInG[temp_node2];
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+
+        //         for(temp_i=Exc2->vnum-1;temp_i>=0;--temp_i){
+        //             temp_node=Exc2->vlist[temp_i];
+        //             if(degInP[temp_node]==temp_size1) continue;
+        //             if(degInP[temp_node]<temp_size1-k||degInG[temp_node]<temp_stand1-k){
+        //                 Exc2->remove(temp_node);
+        //                 remove_E21.push_back(temp_node);
+        //             }else{
+        //                 for(int j:temp_vector){
+        //                     if(!bit_G[temp_node].test(j)){
+        //                         Exc2->remove(temp_node);
+        //                         remove_E21.push_back(temp_node);
+        //                         break;
+        //                     }
+        //                 }
+        //             }
+                    
+        //         }
+        //     }
+        //     for(temp_i=degree[i]-1;temp_i>=0;--temp_i){
+        //         G_index2[Graph[i][temp_i]]=0;
+        //     }
+        
+        //     if(CanBranch())
+        //         BKmb_Rec();
+
+        //     for(int j:remove_C11){
+        //         Cand1->add(j);
+        //         for(temp_i=degree[j]-1;temp_i>=0;--temp_i){
+        //             ++degInG[Graph[j][temp_i]];
+        //         }
+        //     }
+
+        //     for(int j:remove_C21){
+        //         Cand2->add(j);
+        //         for(temp_i=degree[j]-1;temp_i>=0;--temp_i){
+        //             ++degInG[Graph[j][temp_i]];
+        //         }
+        //     }
+
+        //     P2->remove(i);
+        //     Cand2->add(i);
+        //     Exc2->remove(i);
+        //     for(temp_i=degree[i]-1;temp_i>=0;--temp_i){
+        //         --degInP[Graph[i][temp_i]];
+        //     }
+
+        //     for(int j:remove_E11){
+        //         Exc1->add(j);
+        //     }
+        //     for(int j:remove_E21){
+        //         Exc2->add(j);
+        //     }
+
+
+        // }
+        //test end
