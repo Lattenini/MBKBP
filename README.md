@@ -79,15 +79,17 @@ The input graph  should follow the following format.
 
  Example.graph
 
-    3 1 2
-    0 1 2
-    1 0
-    2 0
+    14 7 49
+    0 7 11
+    1 7 8 11 12 13
+    2 7 9 11 13
+    3 7 11 12
+    ...
     (File ends with an empty line)
 
 (1) Given an input graph G=(L,R), vertices are represented by non-negtive integers from 0 to |V(G)|. By default, {0,1,...,|L|-1} denotes the left side and {|L|,|L|+1,...,|L|+|R|-1} denotes the right side. 
 
-(2) The first line includes 3 non-neigtive integers, e.g., 3 1 2, that denote the number of vertices, the id of the first vertex in the right side and the number of edges, respectively. To illustrate, consider the first line 3 2 1. The input graph has three vertices {0, 1, 2}, and two edges (0, 1) and (0, 2). {0} denotes the left side and {1,2} denotes the right sie.
+(2) The first line includes 3 non-neigtive integers, e.g., 14 7 49, that denote the number of vertices, the id of the first vertex in the right side and the number of edges, respectively. To illustrate, consider the first line 14 7 49. The input graph has 14 (7+7=14) vertices,  and 49 edges. {0-6} denotes the left side and {7-13} denotes the right sie.
 
-(3) The following lines represent an adjacent list of the input graph. To illustrate, consider the second line 0 1 2. The vertex with id 0 is adjacent with two vertices 1 and 2.
+(3) The following lines represent an adjacent list of the input graph. To illustrate, consider the second line 0 7 11. The vertex with id 0 is adjacent with two vertices 7 and 11.
 
