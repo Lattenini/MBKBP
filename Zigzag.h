@@ -1,12 +1,12 @@
 #pragma once
 #include<iostream>
 #include <queue>
-#include "FastBB.h"
+#include "MBKBPSearch.h"
 #include <set>
 #include "Corepruning.h"
 using namespace std;
 
-class Framework
+class Zigzag
 {
 private:
     int **Graph;
@@ -20,8 +20,6 @@ private:
     int pb, pgs;
     int theta_l,theta_r;
     int delta;
-    string version;
-    int spenode;
 
     int *temp_index;
     int *temp_index2;
@@ -35,14 +33,13 @@ private:
 
 
 public:
-    Framework(int **Graph, int *degree, int graph_size, int bi_index, int k, int theta_l, int theta_r, int delta, string version,int spenode);
-    ~Framework();
+    Zigzag(int **Graph, int *degree, int graph_size, int bi_index, int k, int theta_l, int theta_r, int delta);
+    ~Zigzag();
     bool One_hop(int l, int r);
-    void PBIE();
-    int Heuristic_search(int **Graph, int *degree, int graph_size, int bi_index, int k, int theta_l, int theta_r, int delta);
+    void ZigzagFramework();
 };
 
-Framework::Framework(int **Graph, int *degree, int graph_size, int bi_index, int k, int theta_l, int theta_r, int delta, string version,int spenode)
+Zigzag::Zigzag(int **Graph, int *degree, int graph_size, int bi_index, int k, int theta_l, int theta_r, int delta)
 {
     this->Graph=Graph;
     this->degree=degree;
@@ -53,8 +50,6 @@ Framework::Framework(int **Graph, int *degree, int graph_size, int bi_index, int
     this->theta_r=theta_r;
     this->delta=delta;
     this->pgs=0;
-    this->version=version;
-    this->spenode=spenode;
 
     temp_index=new int[graph_size];
     temp_index2=new int[graph_size];
@@ -76,12 +71,12 @@ Framework::Framework(int **Graph, int *degree, int graph_size, int bi_index, int
     
 }
 
-Framework::~Framework()
+Zigzag::~Zigzag()
 {
 }
 
 
-void Framework::PBIE(){
+void Zigzag::ZigzagFramework(){
     int current=0;
     int maxLdeg=0, maxRdeg=0;
     //寻找左侧顶点的最大degree
@@ -121,7 +116,7 @@ void Framework::PBIE(){
             if(alfa>0){
                 CoreLocate core(pG, pd, pgs,pb,alfa);
                 core.Coredecompose(); 
-                if(!core.CorePrune(pG2,pd2,pb2,spenode,pgs2)) return;
+                if(!core.CorePrune(pG2,pd2,pb2,pgs2)) return;
                 cout << "alfa prune后的大小：" << pgs2 << endl;
             }else{
                 pG2=pG;
@@ -134,27 +129,26 @@ void Framework::PBIE(){
             CoreLocate core(pG2, pd2, pgs2,pb2,alfa);
             core.Coredecompose(); //可以得到G_label：每个顶点的core number
             //根据core number计算上界 end
-            // FastBB bb(pG2,pgs2,pb2,pd2,delta,k,low_l,low_r,last_v,version,spenode,core.G_label,enuNum); //Edge需要注释掉
-            FastBB bb(pG,pgs,pb,pd,delta,k,low_l,low_r,last_v,version,spenode,core.G_label,enuNum);
+            MBKBPSearch ms(pG2,pgs2,pb2,pd2,delta,k,low_l,low_r,last_v,core.G_label,enuNum);
             
-            bb.MaxNodeNum = current;
+            ms.MaxNodeNum = current;
 
-            bb.re_temp_index=re_temp_index;
-            bb.BKmb();
+            ms.re_temp_index=re_temp_index;
+            ms.search();
 
-            enuNum = bb.enuNum;
+            enuNum = ms.enuNum;
 
-            current = bb.MaxNodeNum;
+            current = ms.MaxNodeNum;
 
         }
     }
-    cout << "enum number = " << enuNum << endl;
+    // cout << "enum number = " << enuNum << endl;
 }
 
 
 
 
-bool Framework::One_hop(int l, int r){//先reduce图，在删减后又重新创建了新图。相当于删除了度数≤l以及≤r的顶点
+bool Zigzag::One_hop(int l, int r){//先reduce图，在删减后又重新创建了新图。相当于删除了度数≤l以及≤r的顶点
     for(temp_i=graph_size-1;temp_i>=0;--temp_i){
         temp_index[temp_i]=1;
         temp_deg[temp_i]=degree[temp_i];
