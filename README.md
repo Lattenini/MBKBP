@@ -1,76 +1,47 @@
-# SIGMOD23-MaxBP
-Our code, data and additional materials are avaliable here.
-## Index  
-```shell
-.
-|- README.md
-|- Code
-|  | - dataset
-|  |   |- Example.g
-|  |   |- divorce.g
-|  |   |- cfat.g
-|  |   |- cities.g
-|  |   |- writer.g
-|  | ...
-|- SIGMOD-MaxBP-report.pdf (technical report)
-```
-
-
-# FastBB
-An efficient algorithm for finding the Maximum k-BiPlex (MaxBP).
+# Efficient Maximum Balanced k-biplex Search over Bipartite Graphs
+This is an official implementation of "Efficient Maximum Balanced k-biplex Search over Bipartite Graphs"
 
 
 ## Source code info
 Programming Language: `C++`
  
-Compiler Info: `gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0 ` OR `gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)`
+Compiler Info: `clang++`
 
 Packages/Libraries Needed: `CMake 2.8`, `makefile`
 
 ## Datasets info
-All datasets used in our experiments are from the [KONECT](http://konect.cc/networks/ "KONECT") website. We provided four small datasets, i.e., Divorce, Cfat, Cities, and Writer, in the folder "./code/dataset".
+All datasets used in our experiments can be download from the [KONECT](http://konect.cc) website and the [Networkrepository](https://networkrepository.com/) website. We also provide an example dataset in "./dataset/Example.g"
 
 
 
 ## Setup
-### Option 1 (without CMake)
 ```shell
-mkdir build
-cd build
-g++ ../main.cpp -O3 -o FastBB
-```
-### Option 2 (using CMake)
-```shell
-mkdir build
-cd build
-cmake ..
+make clean
 make
 ```
 
 ## Usage
-  ./FastBB {OPTIONS}
+  ./MBKBPZigzag {OPTIONS}
 
-    FastBB, an efficient algorithm for finding MaxBP
+    MBKBPZigzag, an algorithm for finding the maximum δ-balanced k-biplex
 
   OPTIONS:
 
-      -h, --help                          Display this help menu
-      -f[dataset], --file=[dataset]       Path to dataset
-      -k[para k], --k=[para k]            The parameter k
-      -u[para theta_l] --u=[para theta_l] The threshold of number of vertices at left side
-      -v[para theta_r] --v=[para theta_r] The threshold of number of vertices at right side
-      -K[para K], --K=[para K]            Number of MaxBPs to be found
+      -h            Display this help menu
+      -f            Path to dataset
+      -d            The parameter delta
+      -k            The parameter k
+      -l            The lower bound of number of vertices at left side
+      -r            The lower bound of number of vertices at right side
 
 
 ## Running Example
 
 ```shell
-> mkdir build
-> cd build
-> cmake ..
+> make clean
 > make
 >
-> ./FastBB -f "../dataset/Example.g" -k 1 -u 3 -v 3 -K 2
+> ./MBKBPZigzag -f "./dataset/Example.g" -k 1 -d 5 -l 3 -r 3
 Running Time: 0.001859 sec
 |E|: 87  |L|: 5  |R|: 18
 L: 4 0 5 2 1
@@ -94,13 +65,6 @@ R: 27472 27473 27474 27475
 ```
 
 
-## Output Format
-By default, FastBB returns the MaxBP and the corresponding running time.
-
-    Running Time: 1ms
-    |E|: 11  |L|: 3  |R|: 4
-    L: 0 2 1
-    R: 4 5 6 7
 
 ## Input Graph Format
 The input graph  should follow the following format.
@@ -119,14 +83,3 @@ The input graph  should follow the following format.
 
 (3) The following lines represent an adjacent list of the input graph. To illustrate, consider the second line 0 1 2. The vertex with id 0 is adjacent with two vertices 1 and 2.
 
-# Future work
-In the future, we shall try to further improve reproducibility of this work.
-
-(1) Use ReproZip to simplify the reproducibility process.
-
-(2) Rebuild the source code and provide the general frameworks, e.g., Sym-BK, PB, IE, PBIE, in the form of a library.
-
-(3) Provide more datasets used in our experiments and the source code to collect and pre-process datasets from the [KONECT](http://konect.cc/networks/ "KONECT") website.
-
-# Acknowledgment
-We thank reviewers of SIGMOD'23 for their valuable suggestions to help us improve reproducibility.
