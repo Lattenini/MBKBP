@@ -10,13 +10,13 @@ Compiler Info: `clang++`
 Packages/Libraries Needed: `CMake 2.8`, `makefile`
 
 ## Datasets info
-All datasets used in our experiments can be download from the [KONECT](http://konect.cc) website and the [Networkrepository](https://networkrepository.com/) website. We also provide an example dataset in "./dataset/Example.g"
+All datasets used in our experiments can be download from the [KONECT](http://konect.cc) website and the [Networkrepository](https://networkrepository.com/) website. We also provide two example datasets, i.e. Example.g and divorce.g, in the folder "./dataset".
 
 
 
 ## Setup
 ```shell
-make clean
+make clean 
 make
 ```
 
