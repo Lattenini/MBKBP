@@ -1166,18 +1166,18 @@ void MBKBPSearch::enumRecord(){
         resR.push_back(re_temp_index[Cand_R.vlist[i]]);//BBB
         // resR.push_back(Cand_R.vlist[i]);
     }
-    cout << "-----------------------new-----------------------" << endl;
-    cout  << "resL:" ;
-    for(vector<int>:: iterator iter=resL.begin();iter!=resL.end();iter++){
-        cout  << *iter << " ";
-    }
-    cout  << endl;
-    cout  << "resR:" ;
-    for(vector<int>:: iterator iter=resR.begin();iter!=resR.end();iter++){
-        cout  << *iter << " ";
-    }
-    cout  << endl;
-    cout << "-----------------------EndNew-----------------------" << endl;
+    // cout << "-----------------------new-----------------------" << endl;
+    // cout  << "resL:" ;
+    // for(vector<int>:: iterator iter=resL.begin();iter!=resL.end();iter++){
+    //     cout  << *iter << " ";
+    // }
+    // cout  << endl;
+    // cout  << "resR:" ;
+    // for(vector<int>:: iterator iter=resR.begin();iter!=resR.end();iter++){
+    //     cout  << *iter << " ";
+    // }
+    // cout  << endl;
+    // cout << "-----------------------EndNew-----------------------" << endl;
 }
 
 

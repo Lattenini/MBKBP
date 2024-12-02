@@ -106,7 +106,7 @@ void Zigzag::ZigzagFramework(){
         One_hop(low_r-k, low_l-k);//one-hop Graph Reduction构成新图，注意这里输入的是low_r-k
 
         if(pgs!=0 ){
-            cout << "pgs  = " << pgs << endl;
+            // cout << "pgs  = " << pgs << endl;
             //修改
             int alfa=(current-delta)/2-k;
             int **pG2=nullptr;
@@ -117,7 +117,7 @@ void Zigzag::ZigzagFramework(){
                 CoreLocate core(pG, pd, pgs,pb,alfa);
                 core.Coredecompose(); 
                 if(!core.CorePrune(pG2,pd2,pb2,pgs2)) return;
-                cout << "alfa prune后的大小：" << pgs2 << endl;
+                // cout << "alfa prune后的大小：" << pgs2 << endl;
             }else{
                 pG2=pG;
                 pd2=pd;
