@@ -34,7 +34,6 @@ int main(int argc, char** argv) {
 
 	args::ValueFlag<int> Threshold_l(parser, "Lower Bound for L", "The lower bound of the left size of k-biplex", {'l', "l"}, 1);
     args::ValueFlag<int> Threshold_r(parser, "Lower Bound for R", "The lower bound of the right size of k-biplex", {'r', "r"}, 1);
-    args::ValueFlag<int> Spenode(parser, "specific node", "maximum vertex k-biplex include a specific node", {'s', "s"}, -1);
 
 
     try {
