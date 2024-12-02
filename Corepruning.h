@@ -9,7 +9,7 @@ class CoreLocate{
 
     public:
         CoreLocate(int **Graph, int *degree, int graph_size, int bipartite, int K);
-        bool CorePrune(int **&new_graph, int *&degree, int &new_bi,int& spenode,int& new_size);
+        bool CorePrune(int **&new_graph, int *&degree, int &new_bi,int& new_size);
         void Coredecompose();
         int GetMaxcore();
         void CoreOrdering(int **&new_graph, int *&new_degree);
@@ -135,7 +135,7 @@ int CoreLocate::GetMaxcore(){
     return max;
 }
 
-bool CoreLocate::CorePrune(int **&new_graph, int *&new_degree, int &new_bi,int& spenode,int& new_size){
+bool CoreLocate::CorePrune(int **&new_graph, int *&new_degree, int &new_bi,int& new_size){
     int count=0;
     int bi_count=0;
    
@@ -156,15 +156,6 @@ bool CoreLocate::CorePrune(int **&new_graph, int *&new_degree, int &new_bi,int& 
     new_graph=new int*[count];
     new_size=count;
     for(int i=0;i<graph_size;++i){
-        if(i == spenode){
-            if(G_index[i]<0){
-                cout << "coreprune:您指定的顶点不可存在于连通的k-biplex内，请重新指定新的顶点" << endl;
-                return false;
-            }else{
-                cout << "spenode原本为：" << spenode << " ——> 经过corePrune更新为："<< G_index[spenode] << endl;
-                spenode = G_index[spenode];
-            }
-        }
         if(G_index[i]>=0){
             int temp_count=0;
             for(int j=0;j<degree[i];++j){
